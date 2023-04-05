@@ -2,13 +2,15 @@
 
 An example of a full-stack, microservice-based application written in Rust and TypeScript.
 
-## OS-Level Dependencies
+## Dependencies
 
 - [Rust](https://www.rust-lang.org/tools/install)
 - [Node.js](https://nodejs.org/en/download/)
 - [pnpm](https://pnpm.io/installation)
 
-## Global PNPM Dependencies
+### Global PNPM Dependencies
+
+Macrostack also relies on some CLI tooling provided by the NPM repository. Since NPM scripts are run from the project directory rather than CWD, these must be installed globally to function correctly.
 
 - [buf](https://docs.buf.build/installation)
 
