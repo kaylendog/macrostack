@@ -1,0 +1,16 @@
+[workspace]
+members = [
+	"apps/gateway",
+	"common/*",
+	"crates/*",
+	"services/*"
+]
+resolver = "2"
+
+[workspace.dependencies]
+anyhow = "1"
+prost = "0.11"
+tokio = { version = "1", features = ["full"] }
+tonic = "0.9.1"
+tonic-build = { version = "0.9.1", features = ["prost"] }
+tracing = "0.1"

@@ -1,0 +1,11 @@
+[package]
+name = "example-service"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = { workspace = true }
+tokio = { workspace = true }
+tonic = { workspace = true }
+
+macrostack-protocol = { path = "../../common/protocol", features = ["hello"] }
