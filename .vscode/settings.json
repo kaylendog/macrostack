@@ -7,5 +7,9 @@
 	"[yaml]": {
 		"editor.insertSpaces": true,
 		"editor.tabSize": 2
+	},
+	"[terraform]": {
+		"editor.tabSize": 2,
+		"editor.insertSpaces": true
 	}
 }
