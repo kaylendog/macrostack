@@ -9,7 +9,7 @@ permissions:
   packages: write
 
 jobs:
-  build_workspace:
+  build_workspace_image:
     name: Build workspace image
     runs-on: ubuntu-latest
     steps:
@@ -38,8 +38,8 @@ jobs:
           cache-from: type=registry,ref=user/app:latest
           cache-to: type=inline
   
-  build_services:
-    name: Build individual services
+  build_image:
+    name: Build image
     runs-on: ubuntu-latest
     needs: build_workspace
     strategy:
