@@ -2,8 +2,10 @@
 
 use std::{collections::HashMap, env};
 
-use anyhow::Result;
+use anyhow::{Context, Result};
 use rs_consul::RegisterEntityService;
+
+
 
 pub struct ConsulClient {
     client: rs_consul::Consul,
@@ -12,6 +14,9 @@ pub struct ConsulClient {
 impl ConsulClient {
     /// Create a new ConsulClient from the environment variables.
     pub fn from_env() -> Result<Self> {
+        if cfg!(debug_assertions) {
+            dotenv::dotenv().context("failed to load environment")?;
+        }
         let config = rs_consul::Config::from_env();
         let client = rs_consul::Consul::new(config);
         Ok(ConsulClient { client })
@@ -35,7 +40,8 @@ impl ConsulClient {
     pub async fn register(&self, service_kind: &str, port: u16) -> Result<()> {
         let service = if self
             .list_service_kinds()
-            .await?
+            .await
+            .context("failed to list existing services")?
             .contains(&service_kind.to_string())
         {
             Some(RegisterEntityService {
@@ -69,6 +75,9 @@ impl ConsulClient {
 
 pub async fn register(service_kind: &str, port: u16) -> Result<()> {
     let client = ConsulClient::from_env()?;
-    client.register(service_kind, port).await?;
+    client
+        .register(service_kind, port)
+        .await
+        .context("failed to register service")?;
     Ok(())
 }

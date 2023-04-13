@@ -23,12 +23,13 @@ impl Greeter for MacrostackGreeter {
 
 #[tokio::main]
 async fn main() -> Result<()> {
+    // setup logging
+    macrostack_tracing::init("example-service")?;
+    // register with consul
+    macrostack_consul::register("example-service", 50051).await?;
+    // setup grpc
     let addr = "[::1]:50051".parse()?;
     let greeter = MacrostackGreeter::default();
-
-	// register with consul
-	macrostack_consul::register("example-service", 50051).await?;
-
     Server::builder()
         .add_service(GreeterServer::new(greeter))
         .serve(addr)
