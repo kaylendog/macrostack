@@ -1,4 +1,4 @@
-FROM macrostack/services:latest as builder
+FROM ghcr.io/kaylendog/macrostack-services:latest as builder
 
 FROM alpine:latest
 
