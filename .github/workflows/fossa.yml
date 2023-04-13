@@ -1,0 +1,17 @@
+name: Scan with FOSSA
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  scan:
+    name: Scan with FOSSA
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      # setup docker and compose
+      - uses: fossas/fossa-action@main
+        with:
+          api-key: ${{secrets.FOSSA_API_KEY}}
+          branch: main
