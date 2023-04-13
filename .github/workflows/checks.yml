@@ -1,0 +1,54 @@
+name: Checks
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  scan:
+    name: Scan with FOSSA
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      # setup docker and compose
+      - uses: fossas/fossa-action@main
+        with:
+          api-key: ${{secrets.FOSSA_API_KEY}}
+          branch: main
+
+  eslint:
+    name: Lint with eslint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: reviewdog/action-eslint@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-check # Change reporter.
+          eslint_flags: "src/"
+
+  proto:
+    name: Lint with protolint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: yoheimuta/action-protolint@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-check
+          level: warning
+
+  clippy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: install clippy
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+          components: clippy
+
+      - uses: sksat/action-clippy@main
+        with:
+          reporter: github-check

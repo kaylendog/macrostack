@@ -12,11 +12,11 @@ spec:
         app: example-service
     spec:
       containers:
-      - name: example-service
-        image: ghcr.io/kaylendog/macrostack-example-service:latest
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
-        ports:
-        - containerPort: 50051
+        - name: example-service
+          image: ghcr.io/kaylendog/macrostack-example-service:latest
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 50051
