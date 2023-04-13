@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: example-service
-        image: macrostack/example-service:latest
+        image: ghcr.io/kaylendog/macrostack-example-service:latest
         resources:
           limits:
             memory: "128Mi"
