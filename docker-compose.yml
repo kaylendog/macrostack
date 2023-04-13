@@ -1,0 +1,15 @@
+services:
+  consul:
+    image: consul
+    ports:
+      - "8500:8500"
+    command: "agent -server -bootstrap-expect 1 -data-dir /tmp/consul -ui -client"
+
+  pg:
+    image: postgres:alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres

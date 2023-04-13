@@ -25,6 +25,16 @@ Below is a brief overview of the structure of this repository.
 - `/packages` - This directory contains the source code for the packages written in TypeScript.
 - `/services` - A dedicated directory containing the source code for the project's microservices.
 
+## Development
+
+Local development is aided using a Docker Compose environment that provides a PostgreSQL database, a Consul agent, and a Redis instance. To start the environment, run the following command:
+
+```sh
+docker compose up -d
+```
+
+Macrostack makes use of Turborepo to aid in caching of task outputs. You can find the documentation [here](https://turbo.build/repo/docs/reference/command-line-reference).
+
 ## License
 
 All code in this repository is licensed under a dual MIT/Apache-2.0 license, at your option. There are some exceptions to this, which are noted in the relevant projects' READMEs. See [LICENSE-MIT](LICENSE-MIT) and [LICENSE-APACHE](LICENSE-APACHE) for more details.
