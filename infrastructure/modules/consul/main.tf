@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    consul = {
+      source  = "hashicorp/consul"
+      version = "2.17.0"
+    }
+  }
+}
+
 resource "helm_release" "consul" {
   name       = "consul"
   repository = "https://helm.releases.hashicorp.com"
@@ -6,7 +15,7 @@ resource "helm_release" "consul" {
   namespace  = "default"
   values = [
     templatefile("${path.module}/values.yaml", {
-      consul_version = var.consul_version
+      image = format("hashicorp/consul:%s", var.version)
     })
   ]
 }

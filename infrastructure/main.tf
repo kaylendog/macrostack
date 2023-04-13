@@ -12,6 +12,18 @@ terraform {
   }
 }
 
+provider "helm" {
+  kubernetes {
+    host                   = var.kubernetes_host
+    cluster_ca_certificate = base64decode(var.kubernetes_cluster_ca_certificate)
+  }
+}
+
+provider "kubernetes" {
+  host                   = var.kubernetes_host
+  cluster_ca_certificate = base64decode(var.kubernetes_cluster_ca_certificate)
+}
+
 module "consul" {
   source = "./modules/consul"
 }

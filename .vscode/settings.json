@@ -11,5 +11,10 @@
 	"[terraform]": {
 		"editor.tabSize": 2,
 		"editor.insertSpaces": true
+	},
+
+	"[helm]": {
+		"editor.tabSize": 2,
+		"editor.insertSpaces": true
 	}
 }

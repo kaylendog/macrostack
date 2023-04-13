@@ -24,10 +24,20 @@ pub fn builder() -> SubscriberBuilder {
 /// Initialize tracing with the given logger name and production settings.
 #[cfg(not(debug_assertions))]
 pub fn init_prod<S: AsRef<str>>(name: S) -> Result<()> {
-    let builder = builder(name);
-    let env_filter = EnvFilter::builder()
-        .with_default_level(tracing::Level::INFO)
-        .build();
+    use tracing::Level;
+    // create builder
+    let builder = builder();
+    // setup environment filter
+    let env_filter_builder = EnvFilter::builder().with_default_directive(Level::INFO.into());
+    let env_filter = env_filter_builder
+        .try_from_env()
+        .unwrap_or_else(|_| env_filter_builder.parse("").unwrap());
+    // setup builder
+    builder
+        .with_env_filter(env_filter)
+        .try_init()
+        .map_err(|_| anyhow!("Failed to initialize tracing"))?;
+    Ok(())
 }
 
 /// Initialize tracing with the given logger name and debug settings.

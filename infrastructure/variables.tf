@@ -1,3 +1,13 @@
+variable "kubernetes_host" {
+  type        = string
+  description = "The host of the Kubernetes cluster"
+}
+
+variable "kubernetes_cluster_ca_certificate" {
+  type        = string
+  description = "The base64 encoded cluster CA certificate"
+}
+
 variable "postgres_version" {
   type        = string
   description = "Postgres version"

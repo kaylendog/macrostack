@@ -5,8 +5,6 @@ use std::{collections::HashMap, env};
 use anyhow::{Context, Result};
 use rs_consul::RegisterEntityService;
 
-
-
 pub struct ConsulClient {
     client: rs_consul::Consul,
 }
@@ -56,11 +54,12 @@ impl ConsulClient {
         } else {
             None
         };
+
         self.client
             .register_entity(&rs_consul::RegisterEntityPayload {
                 ID: None,
-                Node: env::var("CONSUL_NODE").expect("CONSUL_NODE not set"),
-                Address: env::var("CONSUL_ADDRESS").expect("CONSUL_ADDRESS not set"),
+                Node: "".to_string(),
+                Address: env::var("CONSUL_ADDR").expect("CONSUL_ADDR not set"),
                 Datacenter: None,
                 TaggedAddresses: HashMap::new(),
                 NodeMeta: HashMap::new(),

@@ -2,8 +2,8 @@ services:
   consul:
     image: consul
     ports:
-      - "8500:8500"
-    command: "agent -server -bootstrap-expect 1 -data-dir /tmp/consul -ui -client"
+      - 8500:8500
+    command: agent -dev -client 0.0.0.0
 
   pg:
     image: postgres:alpine
