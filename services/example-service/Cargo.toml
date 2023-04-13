@@ -8,4 +8,5 @@ anyhow = { workspace = true }
 tokio = { workspace = true }
 tonic = { workspace = true }
 
+macrostack-consul = { path = "../../crates/consul" }
 macrostack-protocol = { path = "../../common/protocol", features = ["hello"] }

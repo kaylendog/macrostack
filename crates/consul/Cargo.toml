@@ -1,0 +1,9 @@
+[package]
+name = "macrostack-consul"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = { workspace = true }
+
+rs-consul = "0.2.3"

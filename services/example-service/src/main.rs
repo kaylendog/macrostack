@@ -26,6 +26,9 @@ async fn main() -> Result<()> {
     let addr = "[::1]:50051".parse()?;
     let greeter = MacrostackGreeter::default();
 
+	// register with consul
+	macrostack_consul::register("example-service", 50051).await?;
+
     Server::builder()
         .add_service(GreeterServer::new(greeter))
         .serve(addr)
