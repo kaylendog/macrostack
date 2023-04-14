@@ -1,8 +1,8 @@
 FROM ghcr.io/kaylendog/macrostack-services:latest as builder
 
-FROM alpine:latest
+FROM debian:buster-slim
 
-RUN apk --no-cache add ca-certificates
+RUN apt-get update && apt-get install -y ca-certificates
 
 COPY --from=builder /app/target/release/example-service /example-service
 ENTRYPOINT ["/example-service"]

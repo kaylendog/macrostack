@@ -1,6 +1,6 @@
-FROM rust:alpine as builder
+FROM rust:slim-buster
 
-RUN apk add --no-cache musl-dev openssl-dev protoc
+RUN apt-get update && apt-get install -y ca-certificates pkg-config libssl-dev protobuf-compiler
 
 WORKDIR /app
 
