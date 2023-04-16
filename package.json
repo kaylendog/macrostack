@@ -4,6 +4,10 @@
 	"scripts": {
 		"prepare": "husky install"
 	},
+	"packageManager": "^pnpm@8.0.0",
+	"engines": {
+		"node": "18"
+	},
 	"devDependencies": {
 		"@commitlint/cli": "^17.5.1",
 		"@commitlint/config-conventional": "^17.4.4",
