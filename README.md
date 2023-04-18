@@ -38,3 +38,5 @@ Macrostack makes use of Turborepo to aid in caching of task outputs. You can fin
 ## License
 
 All code in this repository is licensed under a dual MIT/Apache-2.0 license, at your option. There are some exceptions to this, which are noted in the relevant projects' READMEs. See [LICENSE-MIT](LICENSE-MIT) and [LICENSE-APACHE](LICENSE-APACHE) for more details.
+
+[![FOSSA Status](https://app.fossa.com/api/projects/custom%2B34788%2Fgithub.com%2Fkaylendog%2Fmacrostack.svg?type=large)](https://app.fossa.com/projects/custom%2B34788%2Fgithub.com%2Fkaylendog%2Fmacrostack?ref=badge_large)
