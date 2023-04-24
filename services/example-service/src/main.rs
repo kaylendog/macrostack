@@ -25,8 +25,6 @@ impl Greeter for MacrostackGreeter {
 async fn main() -> Result<()> {
     // setup logging
     macrostack_tracing::init("example-service")?;
-    // register with consul
-    macrostack_consul::register("example-service", 50051).await?;
     // setup grpc
     let addr = "[::1]:50051".parse()?;
     let greeter = MacrostackGreeter::default();

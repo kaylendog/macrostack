@@ -16,5 +16,8 @@
 	"[helm]": {
 		"editor.tabSize": 2,
 		"editor.insertSpaces": true
+	},
+	"yaml.schemas": {
+		"https://json.schemastore.org/github-workflow.json": "file:///home/skye/Projects/personal/macrostack/.github/workflows/deploy.yml"
 	}
 }

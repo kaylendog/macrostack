@@ -15,18 +15,11 @@ terraform {
 provider "helm" {
   kubernetes {
     host                   = var.kubernetes_host
-    cluster_ca_certificate = base64decode(var.kubernetes_cluster_ca_certificate)
   }
 }
 
 provider "kubernetes" {
   host                   = var.kubernetes_host
-  cluster_ca_certificate = base64decode(var.kubernetes_cluster_ca_certificate)
-}
-
-module "consul" {
-  source         = "./modules/consul"
-  consul_version = var.consul_version
 }
 
 module "postgres" {
@@ -37,8 +30,29 @@ module "postgres" {
 
 module "example-service" {
   source = "./modules/example-service"
+  depends_on = [kubernetes_secret.ghcr-token]
+}
+
+module "gateway" {
+  source = "./modules/gateway"
   depends_on = [
-    module.consul
+    kubernetes_secret.ghcr-token
   ]
-  consul_server_host = module.consul.consul_server_host
+}
+
+resource "kubernetes_secret" "ghcr-token" {
+  type = "kubernetes.io/dockerconfigjson"
+  metadata {
+    namespace = "macrostack"
+    name = "ghcr-token"
+  }
+  data = {
+    ".dockerconfigjson" = jsonencode({
+      auths = {
+        "ghcr.io" = {
+          "auth" = base64encode("${var.ghcr_username}:${var.ghcr_token}")
+        }
+      }
+    })
+  }
 }

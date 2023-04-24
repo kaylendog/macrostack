@@ -3,11 +3,6 @@ variable "kubernetes_host" {
   description = "The host of the Kubernetes cluster"
 }
 
-variable "kubernetes_cluster_ca_certificate" {
-  type        = string
-  description = "The base64 encoded cluster CA certificate"
-}
-
 variable "postgres_version" {
   type        = string
   description = "Postgres version"
@@ -20,9 +15,12 @@ variable "postgres_password" {
   default     = "postgres"
 }
 
-variable "consul_version" {
-  type        = string
-  description = "Consul version"
-  default     = "1.15.2"
+variable "ghcr_username" {
+  description = "The username to access the GitHub Container Registry"
+  type = string
 }
 
+variable "ghcr_token" {
+  description = "The token to access the GitHub Container Registry"
+  type = string
+}

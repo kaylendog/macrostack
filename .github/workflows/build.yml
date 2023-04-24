@@ -2,8 +2,7 @@ name: Build and push Docker images
 
 on:
   push:
-    tags:
-      - "release/v**"
+    branches: [main]
 
 permissions:
   packages: write
@@ -61,4 +60,6 @@ jobs:
           context: .
           push: true
           file: ./infrastructure/modules/${{ matrix.service }}/Dockerfile
-          tags: ghcr.io/${{ github.repository_owner }}/macrostack-${{ matrix.service }}:latest
+          tags: |
+            - ghcr.io/${{ github.repository_owner }}/macrostack-${{ matrix.service }}:latest
+            - ghcr.io/${{ github.repository_owner }}/macrostack-${{ matrix.service }}:${{ github.sha }}
