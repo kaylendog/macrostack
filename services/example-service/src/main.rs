@@ -26,12 +26,10 @@ async fn main() -> Result<()> {
     // setup logging
     macrostack_tracing::init("example-service")?;
     // setup grpc
-    let addr = "[::1]:50051".parse()?;
     let greeter = MacrostackGreeter::default();
     Server::builder()
         .add_service(GreeterServer::new(greeter))
-        .serve(addr)
+        .serve(([127, 0, 0, 1], 50051).into())
         .await?;
-
     Ok(())
 }
