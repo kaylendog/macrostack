@@ -37,7 +37,7 @@ jobs:
   build_image:
     name: Build image
     runs-on: ubuntu-latest
-    needs: build_workspace
+    needs: build_workspace_image
     strategy:
       matrix:
         service: [gateway, example-service]
