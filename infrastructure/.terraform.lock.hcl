@@ -6,6 +6,7 @@ provider "registry.terraform.io/hashicorp/consul" {
   constraints = "2.17.0"
   hashes = [
     "h1:k+8ptRn/iiCnE7mC0LVA8FvnukzKnlD3KAcquPFbtN8=",
+    "h1:zMErWCnPjM5LwFWBIjgAuTwsVBwdM662+FTtYkR0Eks=",
     "zh:1cca5e144b4696900d2410e26499a00c9666e5777b657e9844a4b6d198164a09",
     "zh:4fe59329ae4a4fc13751cde4a1044427ca591ecefbaa8dde2ce828f660fbddb1",
     "zh:55c42cec7dd10ee1f03eca03d5b8e3bcba7bf281bcd250ac220458aba735ba1f",

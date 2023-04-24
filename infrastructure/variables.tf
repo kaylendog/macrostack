@@ -19,3 +19,10 @@ variable "postgres_password" {
   description = "The password for the default user"
   default     = "postgres"
 }
+
+variable "consul_version" {
+  type        = string
+  description = "Consul version"
+  default     = "1.15.2"
+}
+

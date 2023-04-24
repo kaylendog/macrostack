@@ -11,11 +11,11 @@ resource "helm_release" "consul" {
   name       = "consul"
   repository = "https://helm.releases.hashicorp.com"
   chart      = "consul"
-  version    = "1.15.0"
+  version    = "1.1.1"
   namespace  = "default"
   values = [
     templatefile("${path.module}/values.yaml", {
-      image = format("hashicorp/consul:%s", var.version)
+      image = format("hashicorp/consul:%s", var.consul_version)
     })
   ]
 }

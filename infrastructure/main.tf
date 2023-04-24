@@ -25,7 +25,8 @@ provider "kubernetes" {
 }
 
 module "consul" {
-  source = "./modules/consul"
+  source         = "./modules/consul"
+  consul_version = var.consul_version
 }
 
 module "postgres" {
