@@ -2,6 +2,12 @@
 
 ## Setup
 
+Install the local-path provisioner:
+
+```bash
+$ minikube kubectl -- apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.24/deploy/local-path-storage.yaml
+```
+
 Install Consul to the cluster:
 
 ```bash

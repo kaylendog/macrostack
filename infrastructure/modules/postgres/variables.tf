@@ -1,7 +1,7 @@
 variable "postgres_version" {
   type        = string
   description = "Postgres version"
-  default     = "9.6"
+  default     = "15.2.0"
 }
 
 variable "postgres_password" {

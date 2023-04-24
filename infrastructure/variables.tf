@@ -6,7 +6,7 @@ variable "kubernetes_host" {
 variable "postgres_version" {
   type        = string
   description = "Postgres version"
-  default     = "15.2"
+  default     = "15.2.0"
 }
 
 variable "postgres_password" {
