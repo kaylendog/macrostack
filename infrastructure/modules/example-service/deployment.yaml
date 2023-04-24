@@ -7,7 +7,7 @@ metadata:
     app: example-service
     version: v1
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       app: example-service
@@ -28,7 +28,7 @@ spec:
           readinessProbe:
             tcpSocket:
               port: 50051
-          image: ghcr.io/kaylendog/macrostack-example-service:latest
+          image: ghcr.io/kaylendog/macrostack-example-service:99ac83bc710c37c8f28852d40568a6ee37f8d554
           ports:
             - containerPort: 50051
           resources:

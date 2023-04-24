@@ -4,7 +4,7 @@ metadata:
   namespace: macrostack
   name: gateway
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       service: gateway
@@ -23,7 +23,7 @@ spec:
           readinessProbe:
             tcpSocket:
               port: 8080
-          image: ghcr.io/kaylendog/macrostack-gateway:latest
+          image: ghcr.io/kaylendog/macrostack-gateway:99ac83bc710c37c8f28852d40568a6ee37f8d554
           ports:
             - containerPort: 8080
           resources:
