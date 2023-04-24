@@ -3,5 +3,8 @@ resource "kubernetes_manifest" "gateway-service" {
 }
 
 resource "kubernetes_manifest" "gateway-deployment" {
-  manifest = yamldecode(file("${path.module}/deployment.yaml"))
+  manifest = yamldecode(templatefile("${path.module}/deployment.yaml", {
+    commit = var.commit
+  }))
 }
+

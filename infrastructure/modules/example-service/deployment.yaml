@@ -28,7 +28,7 @@ spec:
           readinessProbe:
             tcpSocket:
               port: 50051
-          image: ghcr.io/kaylendog/macrostack-example-service:99ac83bc710c37c8f28852d40568a6ee37f8d554
+          image: ghcr.io/kaylendog/macrostack-example-service:${commit}
           ports:
             - containerPort: 50051
           resources:

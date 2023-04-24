@@ -6,7 +6,7 @@ variable "kubernetes_host" {
 variable "postgres_version" {
   type        = string
   description = "Postgres version"
-  default     = "9.6"
+  default     = "15.2"
 }
 
 variable "postgres_password" {
@@ -17,10 +17,15 @@ variable "postgres_password" {
 
 variable "ghcr_username" {
   description = "The username to access the GitHub Container Registry"
-  type = string
+  type        = string
 }
 
 variable "ghcr_token" {
   description = "The token to access the GitHub Container Registry"
-  type = string
+  type        = string
+}
+
+variable "commit" {
+  description = "The hash of the commit to deploy"
+  type        = string
 }

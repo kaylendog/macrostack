@@ -3,7 +3,9 @@ resource "kubernetes_manifest" "example-service" {
 }
 
 resource "kubernetes_manifest" "example-service-deployment" {
-  manifest = yamldecode(file("${path.module}/deployment.yaml"))
+  manifest = yamldecode(templatefile("${path.module}/deployment.yaml", {
+    commit = var.commit
+  }))
   depends_on = [
     kubernetes_service_account.example-service-account
   ]
@@ -12,7 +14,7 @@ resource "kubernetes_manifest" "example-service-deployment" {
 resource "kubernetes_service_account" "example-service-account" {
   metadata {
     namespace = "macrostack"
-    name = "example-service"
+    name      = "example-service"
   }
   automount_service_account_token = true
 }

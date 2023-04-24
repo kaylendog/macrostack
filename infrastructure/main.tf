@@ -14,12 +14,12 @@ terraform {
 
 provider "helm" {
   kubernetes {
-    host                   = var.kubernetes_host
+    host = var.kubernetes_host
   }
 }
 
 provider "kubernetes" {
-  host                   = var.kubernetes_host
+  host = var.kubernetes_host
 }
 
 module "postgres" {
@@ -29,8 +29,9 @@ module "postgres" {
 }
 
 module "example-service" {
-  source = "./modules/example-service"
+  source     = "./modules/example-service"
   depends_on = [kubernetes_secret.ghcr-token]
+  commit     = var.commit
 }
 
 module "gateway" {
@@ -38,13 +39,14 @@ module "gateway" {
   depends_on = [
     kubernetes_secret.ghcr-token
   ]
+  commit = var.commit
 }
 
 resource "kubernetes_secret" "ghcr-token" {
   type = "kubernetes.io/dockerconfigjson"
   metadata {
     namespace = "macrostack"
-    name = "ghcr-token"
+    name      = "ghcr-token"
   }
   data = {
     ".dockerconfigjson" = jsonencode({
