@@ -28,6 +28,10 @@ module "postgres" {
   postgres_password = var.postgres_password
 }
 
+module "nginx" {
+  source = "./modules/nginx"
+}
+
 module "example-service" {
   source     = "./modules/example-service"
   depends_on = [kubernetes_secret.ghcr-token]

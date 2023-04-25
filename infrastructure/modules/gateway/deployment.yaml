@@ -3,29 +3,30 @@ kind: Deployment
 metadata:
   namespace: macrostack
   name: gateway
+  labels:
+    app: gateway
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: gateway
       app: gateway
   template:
     metadata:
       labels:
-        service: gateway
         app: gateway
       annotations:
         consul.hashicorp.com/connect-inject: "true"
         consul.hashicorp.com/connect-service-upstreams: "example-service:50051"
+        consul.hashicorp.com/service-meta-version: "v1"
+        consul.hashicorp.com/service-tags: "service"
     spec:
+      serviceAccountName: gateway
       containers:
         - name: gateway
           readinessProbe:
             tcpSocket:
               port: 8080
           image: ghcr.io/kaylendog/macrostack-gateway:${commit}
-          ports:
-            - containerPort: 8080
           resources:
             limits:
               memory: "128Mi"

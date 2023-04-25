@@ -8,3 +8,14 @@ resource "kubernetes_manifest" "gateway-deployment" {
   }))
 }
 
+resource "kubernetes_manifest" "gateway-service-defaults" {
+  manifest = yamldecode(file("${path.module}/service-defaults.yaml"))
+}
+
+resource "kubernetes_service_account" "example-service-account" {
+  metadata {
+    namespace = "macrostack"
+    name      = "gateway"
+  }
+  automount_service_account_token = true
+}

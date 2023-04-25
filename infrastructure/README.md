@@ -11,6 +11,7 @@ $ minikube kubectl -- apply -f https://raw.githubusercontent.com/rancher/local-p
 Install Consul to the cluster:
 
 ```bash
+$ minikube kubectl -- apply -k "github.com/hashicorp/consul-api-gateway/config/crd?ref=v0.4.0"
 $ helm install consul hashicorp/consul --set global.name=consul --create-namespace --namespace macrostack --values charts/consul.yaml
 ```
 

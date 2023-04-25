@@ -4,6 +4,8 @@ kind: Service
 metadata:
   namespace: macrostack
   name: example-service
+  labels:
+    app: example-service
 spec:
   selector:
     app: example-service

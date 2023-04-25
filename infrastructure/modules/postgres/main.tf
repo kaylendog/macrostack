@@ -10,4 +10,5 @@ resource "helm_release" "postgres" {
       postgres_password = var.postgres_password
     })
   ]
+
 }
