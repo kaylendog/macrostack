@@ -26,6 +26,8 @@ spec:
           readinessProbe:
             tcpSocket:
               port: 8080
+          ports:
+            - containerPort: 8080
           image: ghcr.io/kaylendog/macrostack-gateway:${commit}
           resources:
             limits:

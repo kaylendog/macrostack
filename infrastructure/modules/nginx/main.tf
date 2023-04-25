@@ -29,3 +29,7 @@ resource "kubernetes_service_account" "nginx-service-account" {
 resource "kubernetes_manifest" "nginx-config" {
   manifest = yamldecode(file("${path.module}/config.yaml"))
 }
+
+resource "kubernetes_manifest" "nginx-reference-grant" {
+  manifest = yamldecode(file("${path.module}/referencegrant.yaml"))
+}
